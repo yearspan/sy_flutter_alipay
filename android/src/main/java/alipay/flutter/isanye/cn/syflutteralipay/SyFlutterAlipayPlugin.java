@@ -67,7 +67,12 @@ public class SyFlutterAlipayPlugin implements MethodCallHandler {
                     }
                 });
         } catch (Exception e) {
-          callback.error("PAY_ERROR",e.getMessage(),null);
+          activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.error("PAY_ERROR", e.getMessage(), null);
+                    }
+                });
         }
       }
     };
